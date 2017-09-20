@@ -1,0 +1,100 @@
+<html ng-app="demo">
+<head>
+	<title>Consulta Contactos</title>	
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="demo.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+	<script src="js/demoCtrl.js"></script>
+</head>
+<body>
+	<div ng-controller="controladorDemo">
+		<div class="container">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<form>
+						<div class="input-group">
+							<!--span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span-->
+							<span class="input-group-addon"><button class="btn btn-primary glyphicon glyphicon-search" type="submit" ng-click="searchContact()"></button></span>
+							<input type="text" class="form-control ng-pristine ng-untouched ng-valid form-control-max" placeholder="Buscar Contacto" ng-model="paramSearchContact">
+
+
+						</div>
+					</form>
+				</div>
+
+				<div class="panel panel-default">
+				<div class="panel-heading">Información Personal</div>
+				<div class="panel-body">
+					<table class="table table-hover table-bordered">
+						<thead>
+							<tr>
+								<th class="th fondo">Cedula</th>
+								<th class="th fondo">Primer Nombre</th>
+								<th class="th fondo">Segundo Nombre</th>
+								<th class="th fondo">Primer Apellido</th>
+								<th class="th fondo">Segundo Apellido</th>
+								<th class="th fondo">Email</th>
+								<th class="th fondo">Profesión</th>
+								<th class="th fondo">Editar</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="contacto in contactos">
+								<td>{{ contacto.numeroIdentificacion }}</td>
+								<td>{{ contacto.primer_nombre }}</td>
+								<td>{{ contacto.segundo_nombre }}</td>
+								<td>{{ contacto.primer_apellido }}</td>
+								<td>{{ contacto.segundo_apellido }}</td>
+								<td>{{ contacto.email_primario }}</td>
+								<td>{{ contacto.profesion }}</td>
+								<td><button type="button" class="btn btn-primary btn-sm btn-sm glyphicon glyphicon-search" ng-click="searchContactAddress()"></button></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+
+				<div class="panel-body" ng-If="flag">
+					<table class="table table-hover table-bordered">
+						<thead>
+							<tr>
+								<th>Dirección</th>
+								<th>Número</th>								
+								<th>Intersección</th>
+								<th>Referencia</th>
+								<th>Tipo</th>
+								<th>Ciudad</th>
+								<th>Datos Financieros</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="address in addressList">
+								<td>{{ address.addressPrincipal }}</td>
+								<td>{{ address.numberAddress }}</td>
+								<td>{{ address.addressInter }}</td>
+								<td>{{ address.addressRef }}</td>
+								<td>{{ address.addressType }}</td>
+								<td>{{ address.addressCity }}</td>
+								<td><button type="button" class="btn btn-success btn-sm glyphicon glyphicon-search" ng-click="searchInfoFinance()"></button></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				</div>
+
+				<div class="panel panel-default" ng-If="flag2">
+				<div class="panel-heading">Información Financiera</div>
+					<div class="panel-body">Calificación en base a créditos / tarjetas de crédito</div>					
+					<img src="js/images/chart1.jpg" class="img-responsive" alt="Cinque Terre" width="304" height="236">
+				</div>
+
+
+			</div>
+		</div>
+
+	</div>
+</body>
+</html>
